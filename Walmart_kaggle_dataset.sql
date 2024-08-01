@@ -25,24 +25,28 @@ CREATE TABLE IF NOT EXISTS sales(
 SELECT *
 FROM sales;
 
--- Add the time_of_day column
+-- Add the time_of_day column to classify the time into Morning, Afternoon, and Evening
 SELECT time,
 (CASE
-	WHEN `time` BETWEEN "00:00:00" AND "12:00:00" THEN "Morning"
-        WHEN `time` BETWEEN "12:01:00" AND "16:00:00" THEN "Afternoon"
-        ELSE "Evening"
- END) AS time_of_day
+    WHEN `time` BETWEEN "00:00:00" AND "12:00:00" THEN "Morning"
+    WHEN `time` BETWEEN "12:01:00" AND "16:00:00" THEN "Afternoon"
+    ELSE "Evening"
+END) AS time_of_day
 FROM sales;
 
 
--- Add a column to the table
+
+-- Add a column to the sales table to classify the time into Morning, Afternoon, and Evening
 ALTER TABLE sales ADD COLUMN time_of_day VARCHAR(20);
 
 
--- Update the added column
+
+-- Update the time_of_day column to classify the time into Morning, Afternoon, and Evening
+
 UPDATE sales
 SET time_of_day = (
-	CASE WHEN `time` BETWEEN "00:00:00" AND "12:00:00" THEN "Morning"
+    CASE 
+        WHEN `time` BETWEEN "00:00:00" AND "12:00:00" THEN "Morning"
         WHEN `time` BETWEEN "12:01:00" AND "16:00:00" THEN "Afternoon"
         ELSE "Evening"
     END
@@ -50,23 +54,31 @@ SET time_of_day = (
 
 
 -- Add day_name column
+-- Retrieve the date and its corresponding day name from the sales table
 SELECT date, DAYNAME(date)
 FROM sales;
 
+-- Add a column to the sales table to store the day name of the date
 ALTER TABLE sales ADD COLUMN day_name VARCHAR(10);
 
+-- Update the day_name column with the corresponding day name of the date
 UPDATE sales
 SET day_name = DAYNAME(date);
 
 
+
 -- Add month_name column
+-- Retrieve the date and its corresponding month name from the sales table
 SELECT date, MONTHNAME(date)
 FROM sales;
 
+-- Add a column to the sales table to store the month name of the date
 ALTER TABLE sales ADD COLUMN month_name VARCHAR(10);
 
+-- Update the month_name column with the corresponding month name of the date
 UPDATE sales
 SET month_name = MONTHNAME(date);
+
 
 
 -- ---------------------------- Generic ------------------------------
@@ -139,7 +151,7 @@ FROM sales
 GROUP BY product_line;
 
 
--- Which branch sold more products than average product sold?
+-- Which branch sold more products than the average product sold?
 SELECT branch, SUM(quantity) AS qnty
 FROM sales
 GROUP BY branch
@@ -207,9 +219,7 @@ ORDER BY avg_rating DESC;
 
 
 -- Which time of the day do customers give the most ratings per branch?
-SELECT
-	time_of_day,
-	AVG(rating) AS avg_rating
+SELECT time_of_day, AVG(rating) AS avg_rating
 FROM sales
 WHERE branch = "A"
 GROUP BY time_of_day
@@ -219,9 +229,7 @@ ORDER BY avg_rating DESC;
 
 
 -- Which day of the week has the best average ratings?
-SELECT
-	day_name,
-	AVG(rating) AS avg_rating
+SELECT day_name, AVG(rating) AS avg_rating
 FROM sales
 GROUP BY day_name 
 ORDER BY avg_rating DESC;
@@ -231,9 +239,7 @@ ORDER BY avg_rating DESC;
 
 
 -- Which day of the week has the best average ratings per branch?
-SELECT 
-	day_name,
-	COUNT(day_name) total_sales
+SELECT  day_name, COUNT(day_name) total_sales
 FROM sales
 WHERE branch = "C"
 GROUP BY day_name
@@ -243,9 +249,7 @@ ORDER BY total_sales DESC;
 -- ---------------------------- Sales ---------------------------------
 
 -- Number of sales made in each time of the day per weekday 
-SELECT
-	time_of_day,
-	COUNT(*) AS total_sales
+SELECT time_of_day, COUNT(*) AS total_sales
 FROM sales
 WHERE day_name = "Sunday"
 GROUP BY time_of_day 
@@ -255,25 +259,19 @@ ORDER BY total_sales DESC;
 -- filled during the evening hours
 
 -- Which of the customer types brings the most revenue?
-SELECT
-	customer_type,
-	SUM(total) AS total_revenue
+SELECT customer_type, SUM(total) AS total_revenue
 FROM sales
 GROUP BY customer_type
 ORDER BY total_revenue;
 
--- Which city has the largest tax/VAT percent?
-SELECT
-	city,
-    ROUND(AVG(tax_pct), 2) AS avg_tax_pct
+-- Which city has the largest tax/VAT percentage?
+SELECT city, ROUND(AVG(tax_pct), 2) AS avg_tax_pct
 FROM sales
 GROUP BY city 
 ORDER BY avg_tax_pct DESC;
 
 -- Which customer type pays the most in VAT?
-SELECT
-	customer_type,
-	AVG(tax_pct) AS total_tax
+SELECT customer_type, AVG(tax_pct) AS total_tax
 FROM sales
 GROUP BY customer_type
 ORDER BY total_tax;
