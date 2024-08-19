@@ -4,7 +4,7 @@
 
 This project aims to explore the Walmart Sales data to understand top-performing branches and products, sales trends of different products, and customer behaviour. The aim is to study how sales strategies can be improved and optimized. 
 
-"In this recruiting competition, job-seekers are provided with historical sales data for 45 Walmart stores located in different regions. Each store contains many departments, and participants must project the sales for each department in each store. To add to the challenge, selected holiday markdown events are included in the dataset. These markdowns are known to affect sales, but it is challenging to predict which departments are affected and the extent of the impact." [source](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting)
+"In this recruiting competition, job-seekers are provided with historical sales data for 45 Walmart stores located in different regions. Each store contains many departments, and participants must project the sales for each department in each store. To add to the challenge, selected holiday markdown events are included in the dataset. These markdowns are known to affect sales, but it is challenging to predict which departments are affected and the extent of the impact.
 
 ## Purposes Of The Project
 
@@ -12,7 +12,7 @@ This project aims to gain insight into Walmart's sales data to understand the di
 
 ## About Data
 
-The dataset was obtained from the [Kaggle Walmart Sales Forecasting Competition](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting). This dataset contains sales transactions from three different branches of Walmart, which are located in Mandalay, Yangon, and Naypyitaw. The data contains 17 columns and 1000 rows:
+The dataset was obtained from the [Kaggle Walmart Sales Forecasting ](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting). This dataset contains sales transactions from three different branches of Walmart, which are located in Mandalay, Yangon, and Naypyitaw. The data contains 17 columns and 1000 rows:
 
 | Column                  | Description                             | Data Type      |
 | :---------------------- | :-------------------------------------- | :------------- |
@@ -42,7 +42,7 @@ The dataset was obtained from the [Kaggle Walmart Sales Forecasting Competition]
 
 2. Sales Analysis
 
-> This analysis aims to answer the question of the sales trends of product. The result of this can help use measure the effectiveness of each sales strategy the business applies and what modifications are needed to gain more sales.
+> This analysis aims to answer the question of the sales trends of products. The result of this can help use measure the effectiveness of each sales strategy the business applies and what modifications are needed to gain more sales.
 
 3. Customer Analysis
 
@@ -58,7 +58,7 @@ The dataset was obtained from the [Kaggle Walmart Sales Forecasting Competition]
 
 2. **Feature Engineering:** This will help us generate some new columns from existing ones.
 
-> 1. Add a new column named `time_of_day` to give an insight of sales in the Morning, Afternoon and Evening. This will help answer the question on which part of the day most sales are made.
+> 1. Add a new column named `time_of_day` to give an insight into sales in the Morning, Afternoon and Evening. This will help answer the question on which part of the day most sales are made.
 
 > 2. Add a new column named `day_name` that contains the extracted days of the week on which the given transaction took place (Mon, Tue, Wed, Thur, Fri). This will help answer the question of which week of the day each branch is busiest.
 
@@ -85,8 +85,8 @@ The dataset was obtained from the [Kaggle Walmart Sales Forecasting Competition]
 6. What product line had the largest revenue?
 5. What is the city with the largest revenue?
 6. What product line had the largest VAT?
-7. Fetch each product line and add a column to those product line showing "Good", "Bad". Good if its greater than average sales
-8. Which branch sold more products than average product sold?
+7. Fetch each product line and add a column to those product lines showing "Good", and "Bad". Good if it's greater than average sales
+8. Which branch sold more products than the average product sold?
 9. What is the most common product line by gender?
 12. What is the average rating of each product line?
 
@@ -105,9 +105,9 @@ The dataset was obtained from the [Kaggle Walmart Sales Forecasting Competition]
 4. Which customer type buys the most?
 5. What is the gender of most of the customers?
 6. What is the gender distribution per branch?
-7. Which time of the day do customers give most ratings?
-8. Which time of the day do customers give most ratings per branch?
-9. Which day fo the week has the best avg ratings?
+7. Which time of the day do customers give the most ratings?
+8. Which time of the day do customers give the most ratings per branch?
+9. Which day of the week has the best average ratings?
 10. Which day of the week has the best average ratings per branch?
 
 
